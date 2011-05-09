@@ -1,4 +1,4 @@
-# Gnome-Shell Extensions
+## Gnome-Shell Extensions
 
 #### For now
 * workspace-indicator extension
