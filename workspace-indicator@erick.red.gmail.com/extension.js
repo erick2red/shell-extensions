@@ -13,7 +13,7 @@ PanelMenu.SystemStatusButton.prototype.updateActor = function(_newActor){
 }
 
 function WorkspaceIndicator() {
-    this._init.apply(this, arguments);
+	this._init.apply(this, arguments);
 }
 
 WorkspaceIndicator.prototype = {
@@ -29,12 +29,12 @@ WorkspaceIndicator.prototype = {
 		this.updateActor(this.statusLabel);
 
 		this.workspacesItems = [];
-        this._workspaceSection = new PopupMenu.PopupMenuSection();
-        this.menu.addMenuItem(this._workspaceSection);
-        global.screen.connect_after('workspace-added', Lang.bind(this,this._createWorkspacesSection));
-        global.screen.connect_after('workspace-removed', Lang.bind(this,this._createWorkspacesSection));
-        global.screen.connect_after('workspace-switched', Lang.bind(this,this._updateIndicator));
-        this._createWorkspacesSection();
+		this._workspaceSection = new PopupMenu.PopupMenuSection();
+		this.menu.addMenuItem(this._workspaceSection);
+		global.screen.connect_after('workspace-added', Lang.bind(this,this._createWorkspacesSection));
+		global.screen.connect_after('workspace-removed', Lang.bind(this,this._createWorkspacesSection));
+		global.screen.connect_after('workspace-switched', Lang.bind(this,this._updateIndicator));
+		this._createWorkspacesSection();
 
 		//styling
 		this.menu.actor.add_style_class_name('shorter');
@@ -45,26 +45,26 @@ WorkspaceIndicator.prototype = {
 		this.statusLabel.set_text((global.screen.get_active_workspace().index() + 1).toString());
 	},
 	
-    _createWorkspacesSection : function() {
-    	this._workspaceSection.removeAll();
-        this.workspacesItems = [];
-        
+	_createWorkspacesSection : function() {
+		this._workspaceSection.removeAll();
+		this.workspacesItems = [];
+		
 		for(let i = 0; i < global.screen.n_workspaces; i++) {
-            this.workspacesItems[i] = new PopupMenu.PopupMenuItem((i + 1).toString());
-            this._workspaceSection.addMenuItem(this.workspacesItems[i]);
-            this.workspacesItems[i].workspaceId = i;
-            this.workspacesItems[i].label_actor = this.statusLabel;
-            this.workspacesItems[i].connect('activate', function(actor, event) {
-                let metaWorkspace = global.screen.get_workspace_by_index(actor.workspaceId);
-                metaWorkspace.activate(true);
-                actor.label_actor.set_text((global.screen.get_active_workspace().index() + 1).toString());
-            });
+			this.workspacesItems[i] = new PopupMenu.PopupMenuItem((i + 1).toString());
+			this._workspaceSection.addMenuItem(this.workspacesItems[i]);
+			this.workspacesItems[i].workspaceId = i;
+			this.workspacesItems[i].label_actor = this.statusLabel;
+			this.workspacesItems[i].connect('activate', function(actor, event) {
+				let metaWorkspace = global.screen.get_workspace_by_index(actor.workspaceId);
+				metaWorkspace.activate(true);
+				actor.label_actor.set_text((global.screen.get_active_workspace().index() + 1).toString());
+			});
 		}
-    },
+	},
 	
 }
 
 function main() {
-    Panel.STANDARD_TRAY_ICON_ORDER.unshift('workspace-indicator');
-    Panel.STANDARD_TRAY_ICON_SHELL_IMPLEMENTATION['workspace-indicator'] = WorkspaceIndicator;
+	Panel.STANDARD_TRAY_ICON_ORDER.unshift('workspace-indicator');
+	Panel.STANDARD_TRAY_ICON_SHELL_IMPLEMENTATION['workspace-indicator'] = WorkspaceIndicator;
 }
