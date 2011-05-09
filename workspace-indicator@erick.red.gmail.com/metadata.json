@@ -1,0 +1,7 @@
+{
+	"shell-version": ["3.0.1"],
+	"uuid": "workspace-indicator@erick.red.gmail.com",
+	"name": "Workspace Indicator",
+	"description": "Put an indicator on the panel signaling in which workspace you are, and give you the possibility of switching to another one",
+	"url": "mine"
+}
