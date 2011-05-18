@@ -2,6 +2,7 @@
 
 #### For now
 * workspace-indicator extension
+* working on Reminder extension
 
 #### Requirements
 * Gnome-Shell 3.0.1
