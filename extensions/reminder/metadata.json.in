@@ -1,0 +1,9 @@
+{
+    "uuid": "@uuid@",
+    "name": "Reminder",
+    "description": "Add reminder ablities to the Shell",
+    "shell-version": [ "@shell_current@" ],
+    "localedir": "@LOCALEDIR@",
+    "original-authors": [ "erick.red@gmail.com" ],
+    "url": "@url@"
+}
