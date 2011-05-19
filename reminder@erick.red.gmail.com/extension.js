@@ -21,9 +21,8 @@ ReminderNotification.prototype = {
     _init: function(source, msg) {
         MessageTray.Notification.prototype._init.call(this, source, msg);
 
-        this.setUrgency(MessageTray.Urgency.HIGH);
+        this.setUrgency(MessageTray.Urgency.CRITICAL);
         this.setResident(true);
-        this.setTransient(false);
 
         this.addButton('back-in-five', 'Be back in 5 min');
         this.addButton('close', 'Close');
