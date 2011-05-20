@@ -28,7 +28,28 @@ __proto__: ModalDialog.ModalDialog.prototype,
 		let label = new St.Label({ text: _("Add Reminder:") });
 
 		this.contentLayout.add(label, { y_align: St.Align.START });
+		this.contentLayout.add_style_class_name('main-box');
 
+		let on_date = new St.BoxLayout({ vertical: false });
+		on_date.add(new St.Label({ text: _("On Date")}), { x_align: St.Align.START } );
+		on_date.add(new St.Entry({ style_class: 'date-entry' }), { x_align: St.Align.START } );
+		on_date.add(new St.Label({ text: "/" }), { x_align: St.Align.START } );
+		on_date.add(new St.Entry({ style_class: 'date-entry' }), { x_align: St.Align.START } );
+		this.contentLayout.add(on_date, { y_align: St.Align.START });
+
+		let buttons_box = new St.BoxLayout({ vertical: false });
+		buttons_box.add(new St.Button({ label: 'Cancel',
+										can_focus: true,
+										reactive: true,
+										x_align: St.Align.START,
+										x_fill: true}),  { x_align: St.Align.START });
+		buttons_box.add(new St.Button({ label: 'Ok',
+										can_focus: true,
+										reactive: true,
+										x_align: St.Align.START,
+										x_fill: true}),  { x_align: St.Align.START });
+		this.contentLayout.add(buttons_box, { y_align: St.Align.START });
+		
 		let entry = new St.Entry();
 
 		this._entryText = entry.clutter_text;

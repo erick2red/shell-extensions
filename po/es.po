@@ -30,3 +30,6 @@ msgstr "Agregar"
 # 27:        let label = new St.Label({ text: _("Add Reminder:") });
 msgid "Add Reminder"
 msgstr "Agregar Reminder"
+
+msgid "On Date"
+msgstr "En fecha"
