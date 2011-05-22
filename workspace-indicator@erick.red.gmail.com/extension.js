@@ -1,3 +1,4 @@
+const Clutter = imports.gi.Clutter;
 const St = imports.gi.St;
 const Lang = imports.lang;
 const Mainloop = imports.mainloop;
@@ -25,7 +26,7 @@ WorkspaceIndicator.prototype = {
 
 		PanelMenu.SystemStatusButton.prototype._init.call(this, 'folder', 'Workspace Indicator');
 		
-		this.statusLabel = new St.Label({ text: (global.screen.get_active_workspace().index() + 1).toString() });
+		this.statusLabel = new St.Label({ text: this._labelText() });
 		this.updateActor(this.statusLabel);
 
 		this.workspacesItems = [];
@@ -34,6 +35,7 @@ WorkspaceIndicator.prototype = {
 		global.screen.connect_after('workspace-added', Lang.bind(this,this._createWorkspacesSection));
 		global.screen.connect_after('workspace-removed', Lang.bind(this,this._createWorkspacesSection));
 		global.screen.connect_after('workspace-switched', Lang.bind(this,this._updateIndicator));
+		this.actor.connect('scroll-event', Lang.bind(this, this._onScrollEvent));
 		this._createWorkspacesSection();
 
 		//styling
@@ -41,8 +43,15 @@ WorkspaceIndicator.prototype = {
 		this.menu.actor.remove_style_class_name('popup-menu');
 	},
 	
-	_updateIndicator: function(a, e){
-		this.statusLabel.set_text((global.screen.get_active_workspace().index() + 1).toString());
+	_updateIndicator: function() {
+		this.statusLabel.set_text(this._labelText());
+	},
+
+	_labelText : function(workspaceIndex) {
+		if(workspaceIndex == undefined) {
+			workspaceIndex = global.screen.get_active_workspace().index();
+		}
+		return "Workspace " + ((workspaceIndex + 1).toString());
 	},
 	
 	_createWorkspacesSection : function() {
@@ -50,18 +59,39 @@ WorkspaceIndicator.prototype = {
 		this.workspacesItems = [];
 		
 		for(let i = 0; i < global.screen.n_workspaces; i++) {
-			this.workspacesItems[i] = new PopupMenu.PopupMenuItem((i + 1).toString());
+			this.workspacesItems[i] = new PopupMenu.PopupMenuItem(this._labelText(i));
 			this._workspaceSection.addMenuItem(this.workspacesItems[i]);
 			this.workspacesItems[i].workspaceId = i;
 			this.workspacesItems[i].label_actor = this.statusLabel;
-			this.workspacesItems[i].connect('activate', function(actor, event) {
-				let metaWorkspace = global.screen.get_workspace_by_index(actor.workspaceId);
-				metaWorkspace.activate(true);
-				actor.label_actor.set_text((global.screen.get_active_workspace().index() + 1).toString());
-			});
+			let self = this;
+			this.workspacesItems[i].connect('activate', Lang.bind(this, function(actor, event) {
+				this._activate(actor.workspaceId);
+			}));
 		}
 	},
-	
+
+	_activate : function (index) {
+		let item = this.workspacesItems[index];
+		if(!item) return;
+		let metaWorkspace = global.screen.get_workspace_by_index(index);
+		metaWorkspace.activate(true);
+		this._updateIndicator();
+	},
+
+	_onScrollEvent : function(actor, event) {
+		let direction = event.get_scroll_direction();
+		let diff = 0;
+		if (direction == Clutter.ScrollDirection.DOWN) {
+			diff = 1;
+		} else if (direction == Clutter.ScrollDirection.UP) {
+			diff = -1;
+		} else {
+			return;
+		}
+
+		let newIndex = global.screen.get_active_workspace().index() + diff;
+		this._activate(newIndex);
+	},
 }
 
 function main() {
