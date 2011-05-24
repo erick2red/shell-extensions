@@ -143,7 +143,7 @@ ReminderNotification.prototype = {
 	_init: function(source, msg) {
 		MessageTray.Notification.prototype._init.call(this, source, msg);
 
-		this.setUrgency(MessageTray.Urgency.CRITICAL);
+		this.setUrgency(MessageTray.Urgency.HIGH);
 		this.setResident(true);
 
 		this.addButton('back-in-five', _('Be back in 5 min'));
@@ -181,6 +181,10 @@ ReminderNotificationSource.prototype = {
 		return new St.Icon({ icon_name: 'dialog-information',
 							 icon_type: St.IconType.SYMBOLIC,
 							 icon_size: this.ICON_SIZE });
+	},
+	
+	_lastNotificationRemoved: function(){
+		log('Doing nothing, not destroying');
 	}
 }
 
@@ -227,6 +231,15 @@ ReminderIndicator.prototype = {
 		this._reminderSection.addMenuItem(this.reminderItems[1]);
 		this.reminderItems[1].connect('activate', function(actor, event){
 			let notification = new ReminderNotification(Panel.mymenu.reminderSource, 'Testing notification emmitt');
+			Panel.mymenu.reminderSource.notify(notification);
+		});
+		
+		this.reminderItems[2] = new PopupMenu.PopupMenuItem('Test Notification 2');
+		let icon = new St.Icon({ icon_name: 'system-run', style_class: 'popup-menu-icon' });
+		this.reminderItems[2].addActor(icon, { align: St.Align.END});
+		this._reminderSection.addMenuItem(this.reminderItems[2]);
+		this.reminderItems[2].connect('activate', function(actor, event){
+			let notification = new ReminderNotification(Panel.mymenu.reminderSource, 'Testing notification emmitt from event 2');
 			Panel.mymenu.reminderSource.notify(notification);
 		});
 	},
