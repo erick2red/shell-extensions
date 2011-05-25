@@ -8,6 +8,9 @@ const Panel = imports.ui.panel;
 
 const Main = imports.ui.main;
 
+const Gettext = imports.gettext.domain('shell-extensions');
+const _ = Gettext.gettext;
+
 PanelMenu.SystemStatusButton.prototype.updateActor = function(_newActor){
 	this._iconActor = _newActor;
 	this.actor.set_child(this._iconActor);
@@ -51,7 +54,7 @@ WorkspaceIndicator.prototype = {
 		if(workspaceIndex == undefined) {
 			workspaceIndex = global.screen.get_active_workspace().index();
 		}
-		return "Workspace " + ((workspaceIndex + 1).toString());
+		return _('Workspace') +  ' ' + ((workspaceIndex + 1).toString());
 	},
 	
 	_createWorkspacesSection : function() {

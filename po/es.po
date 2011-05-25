@@ -6,3 +6,7 @@
 msgid ""
 msgstr ""
 
+#: ../extensions/workspace-indicator/extension.js:57
+msgid "Workspace"
+msgstr "Escritorio"
+
