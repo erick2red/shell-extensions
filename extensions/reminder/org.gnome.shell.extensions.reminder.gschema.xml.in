@@ -1,4 +1,4 @@
-<schemalist gettext-domain="gnome-shell-extensions">
+<schemalist gettext-domain="shell-extensions">
   <schema id="org.gnome.shell.extensions.reminder" path="/org/gnome/shell/extensions/reminder/">
     <key name="reminders-list" type="at">
       <default>[ ]</default>

@@ -1,0 +1,9 @@
+{
+    "uuid": "@uuid@",
+    "name": "Tomboy Viewer",
+    "description": "Tomboy Viewer/Handler integrated inside the shell",
+    "shell-version": [ "@shell_current@" ],
+    "localedir": "@LOCALEDIR@",
+    "original-authors": [ "erick.red@gmail.com" ],
+    "url": "@url@"
+}
