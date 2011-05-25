@@ -21,8 +21,8 @@ dnl keep this in alphabetic order
 dnl by default, install only extensions that do not change completely the shell experience,
 dnl that don't require GSettings and that don't require external packages for typelibs
 dnl (so basically only menus, status icons, search providers, overview tabs, message tray sources, etc.)
-DEFAULT_EXTENSIONS="reminder tomboy-viewer workspace-indicator"
-ALL_EXTENSIONS="$DEFAULT_EXTENSIONS reminder tomboy-viewer workspace-indicator"
+DEFAULT_EXTENSIONS="workspace-indicator"
+ALL_EXTENSIONS="$DEFAULT_EXTENSIONS workspace-indicator"
 AC_SUBST(ALL_EXTENSIONS, [$ALL_EXTENSIONS])
 AC_ARG_ENABLE([extensions],
 	[AS_HELP_STRING([--enable-extensions],[Space separated list of extensions to enable.
@@ -40,11 +40,7 @@ ENABLED_EXTENSIONS=
 for e in $enable_extensions; do
 	case $e in
 dnl		keep this in alphabetic order
-		tomboy-viewer)
-			ENABLED_EXTENSIONS="$ENABLED_EXTENSIONS $e"
-			ADDITIONAL_PACKAGES="$ADDITIONAL_PAGKAGES tomboy-addins "
-			;;
-		reminder|workspace-indicator)
+		workspace-indicator)
 			ENABLED_EXTENSIONS="$ENABLED_EXTENSIONS $e"
 			;;
 		*)
@@ -63,8 +59,6 @@ fi
 
 dnl Please keep this sorted alphabetically
 AC_CONFIG_FILES([
-  extensions/reminder/Makefile
-  extensions/tomboy-viewer/Makefile
   extensions/workspace-indicator/Makefile
   extensions/Makefile
   Makefile

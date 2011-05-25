@@ -6,30 +6,3 @@
 msgid ""
 msgstr ""
 
-#: ../extensions/reminder/extension.js:27
-# 27: this.addButton('back-in-five', _('Be back in 5 min'));
-msgid "Be back in 5 min"
-msgstr "Vuelve a avisarme en 5 minutos"
-
-#: ../extensions/reminder/extension.js:28
-# 28:        this.addButton('close', _('Close'));
-msgid "Close"
-msgstr "Cerrar"
-
-#: ../extensions/reminder/extension.js:53
-# 53:        MessageTray.Source.prototype._init.call(this, _('Reminder Notification'));
-msgid "Reminder Notification"
-msgstr "Notificación de Alarmas"
-
-#: ../extensions/reminder/extension.js:92
-# 92:		this.reminderItems[0] = new PopupMenu.PopupMenuItem(_('Add'));
-msgid "Add"
-msgstr "Agregar"
-
-#: ../extensions/reminder/extension.js:27
-# 27:        let label = new St.Label({ text: _("Add Reminder:") });
-msgid "Add Reminder"
-msgstr "Agregar Reminder"
-
-msgid "On Date"
-msgstr "En fecha"

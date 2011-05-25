@@ -1,9 +1,0 @@
-<schemalist gettext-domain="shell-extensions">
-  <schema id="org.gnome.shell.extensions.reminder" path="/org/gnome/shell/extensions/reminder/">
-    <key name="reminders-list" type="at">
-      <default>[ ]</default>
-      <_summary>Reminders List expressed as seconds since the Epoch</_summary>
-      <_description>A of integers representing each one a date expressed like seconds since the Epoch</_description>
-    </key>
-  </schema>
-</schemalist>
