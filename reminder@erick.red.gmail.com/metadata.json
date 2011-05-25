@@ -1,8 +1,0 @@
-{
-	"shell-version": ["3.0.1"],
-	"uuid": "reminder@erick.red.gmail.com",
-	"name": "Reminder",
-	"description":
-	"Add reminder ablities to the Shell",
-	"url": "https://github.com/erick2red/shell-extensions"
-}

@@ -1,0 +1,8 @@
+# Spanish translation for shell-extensions.
+# Copyright (C) 2011 shell-extensions's COPYRIGHT HOLDER
+# This file is distributed under the same license as the shell-extensions package.
+# Erick Pérez Castellanos <erick.red@gmail.com>, 2011.
+#
+msgid ""
+msgstr ""
+

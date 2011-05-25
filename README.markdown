@@ -2,7 +2,6 @@
 
 #### For now
 * workspace-indicator extension
-* working on Reminder extension (closer, closer)
 
 #### Requirements
 * Gnome-Shell 3.0.1
