@@ -4,7 +4,7 @@
 * workspace-indicator extension
 
 #### Requirements
-* Gnome-Shell 3.0.1
+* Gnome-Shell 3.0.1 or later
 
 #### Requests, bugs, comments
 * github
