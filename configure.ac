@@ -1,5 +1,5 @@
 AC_PREREQ(2.63)
-AC_INIT([shell-extensions],[3.0.1],[https://github.com/erick2red/shell-extensions])
+AC_INIT([shell-extensions],[3.0.2],[https://github.com/erick2red/shell-extensions])
 
 AC_CONFIG_MACRO_DIR([m4])
 AC_CONFIG_AUX_DIR([config])
