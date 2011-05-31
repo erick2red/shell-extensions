@@ -2,6 +2,7 @@
 
 #### For now
 * workspace-indicator extension
+* wish-list extension
 
 #### Requirements
 * Gnome-Shell 3.0.1 or later
