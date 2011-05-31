@@ -21,8 +21,8 @@ dnl keep this in alphabetic order
 dnl by default, install only extensions that do not change completely the shell experience,
 dnl that don't require GSettings and that don't require external packages for typelibs
 dnl (so basically only menus, status icons, search providers, overview tabs, message tray sources, etc.)
-DEFAULT_EXTENSIONS="workspace-indicator"
-ALL_EXTENSIONS="$DEFAULT_EXTENSIONS workspace-indicator"
+DEFAULT_EXTENSIONS="wish-list workspace-indicator"
+ALL_EXTENSIONS="$DEFAULT_EXTENSIONS wish-list workspace-indicator"
 AC_SUBST(ALL_EXTENSIONS, [$ALL_EXTENSIONS])
 AC_ARG_ENABLE([extensions],
 	[AS_HELP_STRING([--enable-extensions],[Space separated list of extensions to enable.
@@ -40,7 +40,7 @@ ENABLED_EXTENSIONS=
 for e in $enable_extensions; do
 	case $e in
 dnl		keep this in alphabetic order
-		workspace-indicator)
+		wish-list|workspace-indicator)
 			ENABLED_EXTENSIONS="$ENABLED_EXTENSIONS $e"
 			;;
 		*)
@@ -59,6 +59,7 @@ fi
 
 dnl Please keep this sorted alphabetically
 AC_CONFIG_FILES([
+  extensions/wish-list/Makefile
   extensions/workspace-indicator/Makefile
   extensions/Makefile
   Makefile

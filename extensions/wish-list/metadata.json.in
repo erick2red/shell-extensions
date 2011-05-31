@@ -1,0 +1,9 @@
+{
+    "uuid": "@uuid@",
+	"name": "Wish List",
+    "shell-version": [ "@shell_current@" ],
+	"description": "Display a button with popup menu with a list of items.",
+    "localedir": "@LOCALEDIR@",
+    "original-authors": [ "erick.red@gmail.com" ],
+    "url": "@url@"
+}
