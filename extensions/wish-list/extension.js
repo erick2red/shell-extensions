@@ -11,7 +11,7 @@ const Signals = imports.signals;
 const Lang = imports.lang;
 const Main = imports.ui.main;
 
-const UUID = 'wish-list@erick.red.gmail.com'
+let UUID = '';
 
 function PopupEntryMenuItem() {
     this._init.apply(this, arguments);
@@ -133,7 +133,8 @@ WishList.prototype = {
 }
 
 // Put your extension initialization code here
-function main() {
+function main(meta) {
+	UUID = meta.uuid;
 	Panel.STANDARD_TRAY_ICON_ORDER.unshift('wish-list');
 	Panel.STANDARD_TRAY_ICON_SHELL_IMPLEMENTATION['wish-list'] = WishList;
 }
