@@ -61,7 +61,8 @@ WorkspaceIndicator.prototype = {
 		this._workspaceSection.removeAll();
 		this.workspacesItems = [];
 		
-		for(let i = 0; i < global.screen.n_workspaces; i++) {
+		let i = 0;
+		for(; i < global.screen.n_workspaces; i++) {
 			this.workspacesItems[i] = new PopupMenu.PopupMenuItem(this._labelText(i));
 			this._workspaceSection.addMenuItem(this.workspacesItems[i]);
 			this.workspacesItems[i].workspaceId = i;
@@ -70,6 +71,9 @@ WorkspaceIndicator.prototype = {
 			this.workspacesItems[i].connect('activate', Lang.bind(this, function(actor, event) {
 				this._activate(actor.workspaceId);
 			}));
+		}
+		if(i == 1) {
+			this._updateIndicator();
 		}
 	},
 
