@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<?xml-stylesheet type='text/xsl' href='interface.xsl'?>
+<interface xmlns="http://zero-install.sourceforge.net/2004/injector/interface" uri="http://gfxmonk.net/dist/0install/gnome-shell-workspace-indicator.xml">
+	<name>gnome-shell-workspace-indicator</name>
+	<summary>update indicator for gnome-shell</summary>
+	<publish xmlns="http://gfxmonk.net/dist/0install" mode="third-party"/>
+	<description>update indicator for gnome-shell</description>
+	<homepage>https://github.com/erick2red/shell-extensions</homepage>
+	<group>
+		<environment insert="xdg/data" mode="prepend" name="XDG_DATA_DIRS"/>
+		<implementation id="." version="0.1">
+		</implementation>
+	</group>
+</interface>
