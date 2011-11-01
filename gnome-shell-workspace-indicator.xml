@@ -67,9 +67,9 @@ document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'">'+'erick.red (at) gmail.com'+
 			<manifest-digest sha256="f61959400d619576aeb62795d37ece8daf265aafc1ce38f0cf835cf688908276"/>
 			<archive href="http://gfxmonk.net/dist/0install/gnome-shell-workspace-indicator/gnome-shell-workspace-indicator-20110806.1108.tgz" size="18819"/>
 		</implementation>
-		<implementation id="sha1new=aa32953c84b745baec45597462d8cc750eb74fd9" released="2011-11-01" version="20111101.1849">
-			<manifest-digest sha256="b0441e7f04385b1d1a91dfac4c1f6382213836b673d92d634e53f90493c8db4f"/>
-			<archive href="http://gfxmonk.net/dist/0install/gnome-shell-workspace-indicator/gnome-shell-workspace-indicator-20111101.1849.tgz" size="19105"/>
+		<implementation id="sha1new=7d98a541dc6c611ff21fd19e79f7e3d7b8000c54" released="2011-11-01" version="20111101.2114">
+			<manifest-digest sha256="8195d8405d37fc430e2f8f71c5ea08530554a7bd897493f18a2e1582d205ba19"/>
+			<archive href="http://gfxmonk.net/dist/0install/gnome-shell-workspace-indicator/gnome-shell-workspace-indicator-20111101.2114.tgz" size="19080"/>
 		</implementation>
 	</group>
 </interface>
