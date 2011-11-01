@@ -161,6 +161,5 @@ function enable() {
 
 function disable() {
 	log("workspace indicator disabled()");
-	_indicator = new WorkspaceIndicator;
 	_indicator.destroy();
 }
