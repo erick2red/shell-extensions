@@ -12,11 +12,6 @@ const Main = imports.ui.main;
 const Gettext = imports.gettext.domain('shell-extensions');
 const _ = Gettext.gettext;
 
-PanelMenu.SystemStatusButton.prototype.updateActor = function(_newActor){
-	this._iconActor = _newActor;
-	this.actor.set_child(this._iconActor);
-}
-
 function WorkspaceIndicator() {
 	this._init.apply(this, arguments);
 }
@@ -28,13 +23,11 @@ WorkspaceIndicator.prototype = {
 	__proto__: PanelMenu.SystemStatusButton.prototype,
 	
 	_init: function(){
-		//debugging
-		Panel.mymenu = this;
+		PanelMenu.SystemStatusButton.prototype._init.call(this, 'folder');
+
 		this._panel = Main.panel;
 		this._panelBinding = null;
 		this._indicatorBinding = null;
-
-		PanelMenu.SystemStatusButton.prototype._init.call(this, 'folder', 'Workspace Indicator');
 
 		this.boxLayout = new St.BoxLayout();
 		this.statusLabel = new St.Label({ text: '', style: 'min-width:1em;' });
@@ -43,7 +36,10 @@ WorkspaceIndicator.prototype = {
 
 		this.boxLayout.add_actor(this.prefixLabel);
 		this.boxLayout.add_actor(this.statusLabel);
-		this.updateActor(this.boxLayout);
+
+		// destroy all previously created children, and add our statusLabel
+		this.actor.get_children().forEach(function(c) { c.destroy() });
+		this.actor.add_actor(this.boxLayout);
 
 		this.workspacesItems = [];
 		this._workspaceSection = new PopupMenu.PopupMenuSection();
@@ -67,22 +63,22 @@ WorkspaceIndicator.prototype = {
 	},
 
 	_updatePanelBinding: function() {
-			let panelReactive = this._settings.get_boolean(PANEL_REACTIVE);
-			if(panelReactive) {
-				if(this._indicatorBinding) {
-					this.actor.disconnect(this._indicatorBinding);
-					this._indicatorBinding = null;
-				}
-				this._panel.reactive = true;
-				this._panelBinding = this._panel.actor.connect('scroll-event', Lang.bind(this, this._onScrollEvent));
-			} else {
-				if(this._panelBinding) {
-					this._panel.reactive = false;
-					this._panel.actor.disconnect(this._panelBinding);
-					this._panelBinding = null;
-				}
-				this._indicatorBinding = this.actor.connect('scroll-event', Lang.bind(this, this._onScrollEvent));
+		let panelReactive = this._settings.get_boolean(PANEL_REACTIVE);
+		if(panelReactive) {
+			if(this._indicatorBinding) {
+				this.actor.disconnect(this._indicatorBinding);
+				this._indicatorBinding = null;
 			}
+			this._panel.reactive = true;
+			this._panelBinding = this._panel.actor.connect('scroll-event', Lang.bind(this, this._onScrollEvent));
+		} else {
+			if(this._panelBinding) {
+				this._panel.reactive = false;
+				this._panel.actor.disconnect(this._panelBinding);
+				this._panelBinding = null;
+			}
+			this._indicatorBinding = this.actor.connect('scroll-event', Lang.bind(this, this._onScrollEvent));
+		}
 	},
 	_updatePrefix: function() {
 		this.prefixLabel.visible = this._settings.get_boolean(WIDE_INDICATOR);
@@ -118,9 +114,8 @@ WorkspaceIndicator.prototype = {
 				this._activate(actor.workspaceId);
 			}));
 		}
-		if(i == 1) {
-			this._updateWorkspaceNumber();
-		}
+
+		this._updateWorkspaceNumber();
 	},
 
 	_activate : function (index) {
@@ -147,7 +142,24 @@ WorkspaceIndicator.prototype = {
 	},
 }
 
-function main() {
-	Panel.STANDARD_TRAY_ICON_ORDER.unshift('workspace-indicator');
-	Panel.STANDARD_TRAY_ICON_SHELL_IMPLEMENTATION['workspace-indicator'] = WorkspaceIndicator;
+function init(meta) {
+    // empty
+}
+
+let _indicator;
+
+function enable() {
+	log("workspace indicator enabled()");
+	try {
+		_indicator = new WorkspaceIndicator();
+		Main.panel.addToStatusArea('workspace-indicator', _indicator);
+		logger.info("workspace indicator finished enable()");
+	} catch(e) {
+		log("Workspace indicator could not initialize: " + e);
+	}
+}
+
+function disable() {
+	log("workspace indicator disabled()");
+	_indicator.destroy();
 }
